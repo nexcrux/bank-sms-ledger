@@ -1,0 +1,9 @@
+name = "bank-sms-ledger"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "sms-banking-db"
+database_id = "8e45ca34-1aed-47cc-b4d5-c1472ab5172b"

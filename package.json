@@ -1,0 +1,31 @@
+{
+  "name": "bank-sms-ledger",
+  "version": "1.0.0",
+  "description": "SMS banking transaction processing system using Cloudflare Workers",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create sms-banking-db",
+    "db:init": "wrangler d1 execute sms-banking-db --file=./src/db/schema.sql",
+    "db:query": "wrangler d1 execute sms-banking-db --command",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexcrux/bank-sms-ledger.git"
+  },
+  "keywords": ["sms", "banking", "ledger", "cloudflare-workers", "d1"],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/nexcrux/bank-sms-ledger/issues"
+  },
+  "homepage": "https://github.com/nexcrux/bank-sms-ledger#readme",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260127.0",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.61.0"
+  }
+}
