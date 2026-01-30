@@ -4,7 +4,25 @@ SMS banking transaction processing system using Cloudflare Workers and D1 databa
 
 ## Project Status
 
-🚀 **Issue #1 Complete** - Basic infrastructure set up and ready for deployment
+### ✅ Completed
+- **Issue #1**: Cloudflare Worker + D1 database infrastructure ✅
+- **Bonus**: iOS Shortcuts automation for automatic SMS forwarding ✅
+
+### 🚀 Live & Running
+- **Production URL**: https://bank-sms-ledger.abdullah-915.workers.dev
+- **Database**: D1 (EEUR region) - 4 SMS messages captured
+- **Automation**: iPhone automatically forwarding all SMS to Cloudflare
+
+### 📊 Progress
+- Milestone 1 (Single Bank MVP): **1/5 complete (20%)**
+  - ✅ Issue #1: D1 schema + basic Worker
+  - 🔜 Issue #2: parsed_transactions table + bank parser
+  - ⏳ Issue #3: Workflow orchestration
+  - ⏳ Issue #4: ledger_entries table
+  - ⏳ Issue #5: NAS export integration
+
+### 🎯 Next Up
+**Issue #2**: Add parsed_transactions table + single bank parser
 
 ## Prerequisites
 
@@ -135,6 +153,48 @@ bank-sms-ledger/
 ├── package.json
 └── tsconfig.json
 ```
+
+## iOS Shortcuts Automation (Bonus Feature!)
+
+Automatically forward SMS from your iPhone to Cloudflare without any manual intervention.
+
+### How It Works
+
+```
+📱 iPhone receives SMS
+    ↓
+🤖 Shortcuts automation triggers automatically
+    ↓
+📅 Formats timestamp to ISO 8601
+    ↓
+🌐 POSTs to Cloudflare /ingest endpoint
+    ↓
+💾 Saved to D1 database
+    ↓
+✅ Ready for parsing (Issue #2)
+```
+
+### Setup Guide
+
+See detailed setup instructions in:
+- **Quick Start**: `docs/SHORTCUT_SIMPLE.txt`
+- **Detailed Guide**: `docs/SHORTCUT_DETAILED.txt`
+- **Troubleshooting**: `docs/VARIABLES_EXPLAINED.txt`
+
+### What Gets Captured
+
+- **All SMS messages** are forwarded (filtering happens in parsing layer)
+- Includes: message body, sender, timestamp
+- Supports Arabic text
+- Runs silently in background
+- No user interaction needed
+
+### Current Status
+
+- ✅ Automation running on iPhone
+- ✅ 4 SMS captured automatically
+- ✅ ISO 8601 timestamp formatting
+- ✅ Idempotency working
 
 ## Database Schema
 
