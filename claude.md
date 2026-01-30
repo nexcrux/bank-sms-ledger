@@ -1,5 +1,49 @@
 # SMS Banking System - Build Instructions
 
+## 🎯 Current Status (Jan 30, 2026)
+
+### ✅ What's Been Completed
+
+**Issue #1: Infrastructure (DONE)**
+- ✅ Cloudflare Workers project initialized
+- ✅ D1 database created (ID: 8e45ca34-1aed-47cc-b4d5-c1472ab5172b)
+- ✅ Database schema deployed (`raw_sms` + `processing_state` tables)
+- ✅ POST /ingest endpoint deployed and working
+- ✅ Idempotency implemented (SHA-256 event_id)
+- ✅ Production URL: https://bank-sms-ledger.abdullah-915.workers.dev
+
+**Bonus: iOS Shortcuts Automation (DONE)**
+- ✅ Automatic SMS forwarding from iPhone to Cloudflare
+- ✅ Triggers on ALL incoming SMS (filtering happens in parse layer)
+- ✅ ISO 8601 timestamp formatting
+- ✅ No manual intervention needed
+- ✅ Documentation: `docs/SHORTCUT_SETUP.md`
+- ✅ Screenshots: `docs/screenshots/`
+
+**Current Database Status:**
+- 4 SMS messages captured (2 manual tests + 2 automatic from iPhone)
+- Handles Arabic text correctly
+- Idempotency working
+- Ready for parsing (Issue #2)
+
+### 🔜 Next Up: Issue #2
+
+**Add parsed_transactions table + single bank parser**
+
+Will need from user:
+- Real bank SMS examples from primary Saudi bank
+- Bank's SMS sender ID/pattern
+- Fields to extract: amount, merchant, date, card digits, transaction type
+
+### 📊 Progress
+
+- **Milestone 1** (Single Bank MVP): 1/5 complete (20%)
+  - ✅ Issue #1: D1 schema + basic Worker
+  - 🔜 Issue #2: parsed_transactions table + bank parser
+  - ⏳ Issue #3: Workflow orchestration
+  - ⏳ Issue #4: ledger_entries table
+  - ⏳ Issue #5: NAS export integration
+
 ## Context: What We've Already Decided
 
 ### Architecture Choice
@@ -113,17 +157,25 @@ Each slice must be:
 - Account mapping file structure
 - Kubera API authentication details
 
-## First Task: Project Setup
+## Current Task: Issue #2 - SMS Parsing
 
-Create the repository structure above, set up GitHub project management, then start with Issue #1.
+**Objective:** Add parsed_transactions table and implement first bank parser
 
-For Issue #1 specifically:
-- Initialize Cloudflare Workers project with wrangler
-- Create D1 database
-- Define schema.sql with raw_sms and processing_state tables
-- Deploy POST /ingest endpoint that accepts SMS and writes to raw_sms
-- Test: curl posts SMS, query D1, see row appear
-- Idempotency test: post same SMS twice, still only one row
+**What needs to be done:**
+1. Add `parsed_transactions` table to schema
+2. Create base parser interface (`src/parsers/base.ts`)
+3. Implement first bank-specific parser (`src/parsers/[bank-name].ts`)
+4. Create parse stage (`src/stages/parse.ts`)
+5. Test parsing with real SMS from database
+
+**Database has real SMS ready to parse:**
+- Check current SMS: `wrangler d1 execute sms-banking-db --remote --command "SELECT * FROM raw_sms"`
+- 4 SMS waiting (includes Arabic text)
+
+**User will provide:**
+- Real SMS examples from their primary Saudi bank
+- Bank's SMS sender ID
+- Which fields to extract (amount, merchant, date, etc.)
 
 ## Key Principles
 
@@ -142,6 +194,33 @@ For Issue #1 specifically:
 - Projections are rebuildable from source
 - Raw SMS never mutates
 
+## Important Implementation Details
+
+### iOS Shortcuts Automation
+- **Trigger**: Message Contains ` ` (single space = catch-all)
+- **Shortcut Name**: "SMS Forwarding to Cloudflare"
+- **Actions**:
+  1. Format Date (ISO 8601 with time enabled)
+  2. HTTP POST to /ingest
+  3. JSON body: {body, sender, received_at}
+- **Setup Guide**: `docs/SHORTCUT_SETUP.md`
+
+### Logging & Observability
+- Cloudflare logs enabled (`wrangler tail --format pretty`)
+- Invocation logs enabled
+- Traces enabled
+- All configured in `wrangler.toml`
+
+### Database Queries
+- View all SMS: `wrangler d1 execute sms-banking-db --remote --command "SELECT * FROM raw_sms"`
+- Count: `wrangler d1 execute sms-banking-db --remote --command "SELECT COUNT(*) FROM raw_sms"`
+- Full query reference: `docs/DATABASE_QUERIES.md`
+
+### Production Deployment
+- Deploy: `npm run deploy`
+- Database init: `npm run db:init` (with `--remote` flag for production)
+- Worker URL: https://bank-sms-ledger.abdullah-915.workers.dev
+
 ## Questions to Ask Me
 
 When you need:
@@ -151,10 +230,6 @@ When you need:
 - Testing verification → "Did this work correctly?"
 
 Don't assume - ask when you need context only I can provide.
-
-## Let's Start
-
-Begin with GitHub project setup, then tackle Issue #1.
 
 <claude-mem-context>
 # Recent Activity
