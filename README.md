@@ -176,10 +176,16 @@ Automatically forward SMS from your iPhone to Cloudflare without any manual inte
 
 ### Setup Guide
 
-See detailed setup instructions in:
-- **Quick Start**: `docs/SHORTCUT_SIMPLE.txt`
-- **Detailed Guide**: `docs/SHORTCUT_DETAILED.txt`
-- **Troubleshooting**: `docs/VARIABLES_EXPLAINED.txt`
+**Complete step-by-step instructions**: [`docs/SHORTCUT_SETUP.md`](docs/SHORTCUT_SETUP.md)
+
+**Screenshots**: Available in `docs/screenshots/`
+
+Key steps:
+1. Create automation trigger (Message Contains " ")
+2. Create "SMS Forwarding to Cloudflare" shortcut
+3. Add Format Date action (ISO 8601)
+4. Add HTTP POST to /ingest endpoint
+5. Build JSON with: body, sender, received_at
 
 ### What Gets Captured
 
