@@ -179,9 +179,9 @@ def test_pos_purchase():
 
 ## 📚 Documentation
 
-- **[TEMPLATE_DISCOVERY_SUMMARY.md](TEMPLATE_DISCOVERY_SUMMARY.md)** - Complete project summary
-- **[docs/template_discovery.md](docs/template_discovery.md)** - Full technical guide
-- **[PIPELINE_RESULTS.md](PIPELINE_RESULTS.md)** - Initial results analysis
+- **[SUMMARY.md](SUMMARY.md)** - Complete project summary
+- **[GUIDE.md](GUIDE.md)** - Full technical guide
+- **[RESULTS.md](RESULTS.md)** - Initial results analysis
 
 ---
 

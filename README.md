@@ -21,11 +21,13 @@ pip3 install -r requirements.txt
 - Templates at `templates/sab/*.yaml`
 - Report at `out/cluster_report.md`
 
-**Next:** Tune clustering threshold to merge similar templates (see `PIPELINE_RESULTS.md`)
+**Next:** Tune clustering threshold to merge similar templates
 
 ### Documentation
-- [Template Discovery Guide](docs/template_discovery.md) - Complete pipeline documentation
-- [Pipeline Results](PIPELINE_RESULTS.md) - Initial run results and tuning recommendations
+- [Quick Start](docs/template_discovery/) - Start here!
+- [Full Guide](docs/template_discovery/GUIDE.md) - Complete pipeline documentation
+- [Results & Tuning](docs/template_discovery/RESULTS.md) - Initial results and recommendations
+- [Project Summary](docs/template_discovery/SUMMARY.md) - Comprehensive overview
 
 ---
 
@@ -203,9 +205,9 @@ Automatically forward SMS from your iPhone to Cloudflare without any manual inte
 
 ### Setup Guide
 
-**Complete step-by-step instructions**: [`docs/SHORTCUT_SETUP.md`](docs/SHORTCUT_SETUP.md)
+**Complete step-by-step instructions**: [`docs/cloudflare/SHORTCUT_SETUP.md`](docs/cloudflare/SHORTCUT_SETUP.md)
 
-**Screenshots**: Available in `docs/screenshots/`
+**Screenshots**: Available in `docs/cloudflare/screenshots/`
 
 Key steps:
 1. Create automation trigger (Message Contains " ")

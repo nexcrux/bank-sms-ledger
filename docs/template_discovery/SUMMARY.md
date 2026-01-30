@@ -285,9 +285,10 @@ parsers/sab/
 
 ## 📚 Documentation
 
-- [Complete Guide](docs/template_discovery.md) - Full pipeline documentation
-- [Initial Results](PIPELINE_RESULTS.md) - First run analysis
-- [README](README.md) - Project overview and quick start
+- [Complete Guide](GUIDE.md) - Full pipeline documentation
+- [Initial Results](RESULTS.md) - First run analysis
+- [Quick Start](README.md) - Quick reference and commands
+- [Main README](../../README.md) - Project overview
 
 ---
 
