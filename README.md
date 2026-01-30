@@ -2,6 +2,33 @@
 
 SMS banking transaction processing system using Cloudflare Workers and D1 database.
 
+## 🔬 SAB Template Discovery Pipeline
+
+A data-driven clustering pipeline that automatically discovers message templates from SAB (Saudi Awwal Bank) SMS history.
+
+### Quick Start
+
+```bash
+# Install Python dependencies
+pip3 install -r requirements.txt
+
+# Run the full pipeline
+./scripts/run_pipeline.sh
+```
+
+**Results from 1,668 messages:**
+- 383 clusters discovered
+- Templates at `templates/sab/*.yaml`
+- Report at `out/cluster_report.md`
+
+**Next:** Tune clustering threshold to merge similar templates (see `PIPELINE_RESULTS.md`)
+
+### Documentation
+- [Template Discovery Guide](docs/template_discovery.md) - Complete pipeline documentation
+- [Pipeline Results](PIPELINE_RESULTS.md) - Initial run results and tuning recommendations
+
+---
+
 ## Project Status
 
 ### ✅ Completed

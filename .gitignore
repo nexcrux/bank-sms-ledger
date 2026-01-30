@@ -5,6 +5,16 @@ dist/
 .env
 *.log
 .DS_Store
+
+# Template discovery pipeline outputs
+data/
+out/
+templates/sab/
+ingest_log.txt
+debug_log.txt
+test_simple*.py
+debug_ingest.py
+simple_test.txt
 data/
 out/
 *.parquet
